@@ -37,3 +37,12 @@ class Booking(models.MOdel):
 
     def __str__(self):
         return f"{self.user.username} - {self.room.hotel.name} - {self.check_in_date} to {self.check_out_date}"
+    
+class Review(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+    rating = models.DecimalField(max_digits=3, decimal_places=1)
+    comment = models.TextField()
+
+    def __str__(self):
+        return f"{self.user.user} - {self.hotel.name}"
