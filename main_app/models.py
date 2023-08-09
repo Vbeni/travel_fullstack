@@ -28,3 +28,12 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
     
+class Booking(models.MOdel):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    check_in_date = models.DateField()
+    check_out_date = models.DateField()
+    status = models.CharField(max_length=10, choices=[('CONFIRMED', 'Confirmed'), ('CANCELLED', 'Canceled')])
+
+    def __str__(self):
+        return f"{self.user.username} - {self.room.hotel.name} - {self.check_in_date} to {self.check_out_date}"
