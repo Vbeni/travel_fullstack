@@ -20,20 +20,20 @@ class Room(models.Model):
     availability = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.room_type - self.hotel.name}"
+        return f"{self.room_type} - {self.hotel.name}"
     
 class CustomUser(AbstractUser):
-    phone_number = models.CharField(max_lenght=15, blank=True, null=True)
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
 
     def __str__(self):
         return self.username
     
-class Booking(models.MOdel):
+class Booking(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     check_in_date = models.DateField()
     check_out_date = models.DateField()
-    status = models.CharField(max_length=10, choices=[('CONFIRMED', 'Confirmed'), ('CANCELLED', 'Canceled')])
+    status = models.CharField(max_length=10, choices=[('PENDING', 'Pending'), ('CONFIRMED', 'Confirmed'), ('CANCELED', 'Canceled')])
 
     def __str__(self):
         return f"{self.user.username} - {self.room.hotel.name} - {self.check_in_date} to {self.check_out_date}"
@@ -45,4 +45,4 @@ class Review(models.Model):
     comment = models.TextField()
 
     def __str__(self):
-        return f"{self.user.user} - {self.hotel.name}"
+        return f"{self.user.username} - {self.hotel.name}"
