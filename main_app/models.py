@@ -9,6 +9,8 @@ class Hotel(models.Model):
     rating = models.DecimalField(max_digits=3, decimal_places=1)
     description = models.TextField()
     image_url = models.URLField()
+    city = models.CharField(max_length=100)
+    number_of_rooms = models.IntegerField()
 
     def __str__(self):
         return self.name

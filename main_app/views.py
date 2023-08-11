@@ -1,8 +1,10 @@
 from django.shortcuts import render
 # Importing necessary libraries and modules
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, filters
 from .models import Hotel, Room, CustomUser, Booking, Review
 from .serializers import HotelSerializer, RoomSerializer, CustomUserSerializer, BookingSerializer, ReviewSerializer
+from .filters import HotelFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
 # Defining the HotelViewSet
 class HotelViewSet(viewsets.ModelViewSet):
@@ -11,7 +13,9 @@ class HotelViewSet(viewsets.ModelViewSet):
     """
     queryset = Hotel.objects.all()   # Fetching all the Hotel objects from the database
     serializer_class = HotelSerializer  # Using the HotelSerializer to serialize the data
-
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    search_fields = ['city']
+    filterset_class = HotelFilter
 # Defining the RoomViewSet
 class RoomViewSet(viewsets.ModelViewSet):
     """
