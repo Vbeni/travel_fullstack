@@ -1,0 +1,53 @@
+[
+    {
+        "model": "main_app.hotel",
+        "pk": 1,
+        "fields": {
+            "name": "Grand Hotel",
+            "address": "123 Main St, San Diego",
+            "rating": 4.5,
+            "description": "A luxurious place in the heart of the city.",
+            "image_url": "https://example.com/hotel1.jpg"
+        }
+    },
+    {
+        "model": "main_app.room",
+        "pk": 1,
+        "fields": {
+            "hotel": 1,
+            "room_type": "Deluxe",
+            "price": 120.50,
+            "availability": true
+        }
+    },
+    {
+        "model": "main_app.customuser",
+        "pk": 1,
+        "fields": {
+            "phone_number": "555-123-4567",
+            "username": "john_doe",
+            "password": "12345123"
+        }
+    },
+    {
+        "model": "main_app.booking",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "room": 1,
+            "check_in_date": "2023-08-15",
+            "check_out_date": "2023-08-20",
+            "status": "PENDING"
+        }
+    },
+    {
+        "model": "main_app.review",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "hotel": 1,
+            "rating": 4.5,
+            "comment": "Amazing stay! Loved the ambiance."
+        }
+    }
+]
