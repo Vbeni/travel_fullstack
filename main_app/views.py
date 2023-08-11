@@ -1,6 +1,6 @@
 from django.shortcuts import render
 # Importing necessary libraries and modules
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from .models import Hotel, Room, CustomUser, Booking, Review
 from .serializers import HotelSerializer, RoomSerializer, CustomUserSerializer, BookingSerializer, ReviewSerializer
 
@@ -27,7 +27,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     """
     queryset = CustomUser.objects.all()   # Fetching all the CustomUser objects from the database
     serializer_class = CustomUserSerializer  # Using the CustomUserSerializer to serialize the data
-
+    permission_classes = [permissions.IsAuthenticated]
 # Defining the BookingViewSet
 class BookingViewSet(viewsets.ModelViewSet):
     """
